@@ -1,0 +1,37 @@
+*HEADING
+Cantilever beam under bending with PLANE MPC.
+**PS:Input deck modified
+***
+*INCLUDE,INPUT=Nall.inp
+*INCLUDE,INPUT=Eall.inp
+*INCLUDE,INPUT=Nbou.inp
+*INCLUDE,INPUT=Nmpc.inp
+*INCLUDE,INPUT=Nload.inp
+***
+*MATERIAL,NAME=LIN_ISO_EL
+*ELASTIC
+210000.0,0.3
+***
+*SOLID SECTION,ELSET=EALL,MATERIAL=LIN_ISO_EL
+***
+*BOUNDARY
+Nbou1,3,3
+Nbou2,1,2
+*** 
+*MPC
+PLANE,Nplane
+***
+*STEP,NLGEOM
+*STATIC
+***
+*CLOAD
+Nload,2,200.0
+***
+*NODE PRINT,NSET=Nall
+U
+*EL PRINT,ELSET=Eall
+S,ENER
+***
+*END STEP
+
+
